@@ -29,5 +29,5 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="159dp"
-        android:text="Current Classes:" />
+        android:text="Current Classes: " />
 </RelativeLayout>

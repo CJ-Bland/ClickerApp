@@ -91,7 +91,8 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                // App code
+                Intent myIntent = new Intent(Screen2_LogIn.this, Clicker_App.class);
+                Screen2_LogIn.this.startActivity(myIntent);
             }
 
             @Override

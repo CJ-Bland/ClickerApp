@@ -36,7 +36,7 @@ public class Clicker_App extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Will eventually add classes  ", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Will eventually add classes ", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

@@ -86,13 +86,13 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen2__log_in2);
 
-        /* callbackManager = CallbackManager.Factory.create();
+        callbackManager = CallbackManager.Factory.create();
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Intent myIntent = new Intent(Screen2_LogIn.this, Clicker_App.class);
-                Screen2_LogIn.this.startActivity(myIntent);
+                startActivity(myIntent);
             }
 
             @Override
@@ -104,7 +104,7 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
             public void onError(FacebookException exception) {
                 // App code
             }
-        });*/
+        });
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -164,11 +164,11 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
         });
     }*/
 
-    /*@Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
-    }*/
+    }
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {

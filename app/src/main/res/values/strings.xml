@@ -23,6 +23,7 @@
     <string name="action_logout">Log Out</string>
     <string name="title_activity_test">Test</string>
     <string name="login">Clicker App Log In</string>
+    <string name="cToken">Idkdude</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

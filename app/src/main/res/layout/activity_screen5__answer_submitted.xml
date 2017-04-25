@@ -8,7 +8,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context="com.example.cj.clickerapp.Screen5_AnswerSubmitted">
+<!-- tools:showIn="@layout/app_bar_test"-->
 
     <TextView
         android:text="Answer Submitted"
@@ -22,4 +24,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="184dp"
         android:id="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Answer Status"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="50dp"
+        android:id="@+id/answer"/>
 </RelativeLayout>

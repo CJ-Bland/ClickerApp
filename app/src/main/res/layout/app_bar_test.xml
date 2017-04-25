@@ -21,7 +21,33 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_test" />
+    <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/vf"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="10dp">
+        <include
+            android:id="@+id/content"
+            layout="@layout/content_test"
+            android:visibility="visible"/>
+
+        <include
+            android:id="@+id/testQuiz"
+            layout = "@layout/activity_screen4__answer_screen"
+            android:visibility="gone"/>
+
+        <include
+            android:id="@+id/result"
+            layout = "@layout/activity_screen5__answer_submitted"
+            android:visibility="gone"/>
+
+    </ViewFlipper>
+<!--
+    <include
+        android:id="@+id/content"
+        layout="@layout/content_test"
+        android:visibility="visible"/>
+        -->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

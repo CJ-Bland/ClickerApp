@@ -15,6 +15,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,10 +29,13 @@ import java.sql.SQLException;
 public class Clicker_App extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public boolean bool = false;
+    public ViewFlipper vf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        //in app bar test
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -49,9 +56,54 @@ public class Clicker_App extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        vf = (ViewFlipper)findViewById(R.id.vf);
     }
 
+    public void onClick(View v){
+        if(v.getId() == R.id.button8){
+            vf.setDisplayedChild(1);
+            //findViewById(R.id.content).setVisibility(View.GONE);
+            //findViewById(R.id.testQuiz).setVisibility(View.VISIBLE);
+            findViewById(R.id.fab).setVisibility(View.GONE);
+            //Toast.makeText(getApplicationContext(), "Switch to Second", Toast.LENGTH_SHORT).show();
+        }
+        else if(v.getId() == R.id.button5){
+            //findViewById(R.id.testQuiz).setVisibility(View.GONE);
+            //findViewById(R.id.content).setVisibility(View.VISIBLE);
+            vf.setDisplayedChild(0);
+            findViewById(R.id.fab).setVisibility(View.VISIBLE);
+            //Toast.makeText(getApplicationContext(), "Switch to First", Toast.LENGTH_SHORT).show();
+        }
+        else if(v.getId() == R.id.buttonA){
+            bool = true;
+            Toast.makeText(getApplicationContext(), "A", Toast.LENGTH_SHORT).show();
+        }
+        else if(v.getId() == R.id.buttonB){
+            bool=false;
+            Toast.makeText(getApplicationContext(), "B", Toast.LENGTH_SHORT).show();
+        }
+        else if(v.getId() == R.id.buttonC){
+            bool=false;
+            Toast.makeText(getApplicationContext(), "C", Toast.LENGTH_SHORT).show();
+        }
+        else if(v.getId() == R.id.buttonD){
+            bool=false;
+            Toast.makeText(getApplicationContext(), "D", Toast.LENGTH_SHORT).show();
+        }
 
+        else if(v.getId() == R.id.button7){
+            vf.setDisplayedChild(2);
+            findViewById(R.id.fab).setVisibility(View.GONE);
+            Toast.makeText(getApplicationContext(), "Confirm", Toast.LENGTH_SHORT).show();
+            TextView tv = (TextView) findViewById(R.id.answer);
+            if(bool){
+                tv.setText("You got it right!");
+            }
+            else if(!bool){
+                tv.setText("You got it wrong :(");
+            }
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -61,22 +113,6 @@ public class Clicker_App extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    //supposed to connect to heroku? not working
-    /* static Connection getConnection() throws URISyntaxException, SQLException {
-        String dbUrl = System.getenv("JDBC_DATABASE_URL");
-        return DriverManager.getConnection(dbUrl);
-    }*/
-
-    private static Connection getConnection() throws URISyntaxException, SQLException {
-        URI dbUri = new URI(System.getenv("DATABASE_URL"));
-
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-
-        return DriverManager.getConnection(dbUrl, username, password);
     }
 
     @Override
@@ -108,6 +144,10 @@ public class Clicker_App extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_class) {
+
+            vf.setDisplayedChild(0);
+            findViewById(R.id.fab).setVisibility(View.VISIBLE);
+            Toast.makeText(getApplicationContext(), "Switch to First", Toast.LENGTH_SHORT).show();
 
         }  else if (id == R.id.nav_logout) {
 

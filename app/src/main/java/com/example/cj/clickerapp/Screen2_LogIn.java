@@ -60,9 +60,9 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class Screen2_LogIn extends AppCompatActivity /*implements LoaderCallbacks<Cursor>*/ {
 
-    private User myUser;
+    //private User myUser;
     CallbackManager callbackManager;
 
     /**
@@ -73,13 +73,16 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
+    //private UserLoginTask mAuthTask = null;
 
     // UI references.
+            /*
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,10 +108,10 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
                 // App code
             }
         });
-
+/*
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
+        //populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -132,9 +135,11 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        */
     }
 
-    /*@Override
+    //@Override
+    /*
     public View onCreateView(
             LayoutInflater inflater,
             ViewGroup container,
@@ -162,14 +167,16 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
                 // App code
             }
         });
-    }*/
+        return view;
+    }
+    */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
-
+/*
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -177,7 +184,8 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
 
         getLoaderManager().initLoader(0, null, this);
     }
-
+*/
+/*
     private boolean mayRequestContacts() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
@@ -199,26 +207,29 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
         }
         return false;
     }
+    */
 
     /**
      * Callback received when a permissions request has been completed.
      */
+/*
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         if (requestCode == REQUEST_READ_CONTACTS) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
+               // populateAutoComplete();
             }
         }
     }
-
+*/
 
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+/*
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
@@ -265,7 +276,8 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask.execute((Void) null);
         }
     }
-
+*/
+    /*
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
@@ -275,10 +287,11 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
-
+*/
     /**
      * Shows the progress UI and hides the login form.
      */
+/*
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -311,7 +324,8 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
+    */
+/*
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
@@ -329,6 +343,7 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
     }
 
+    /*
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         List<String> emails = new ArrayList<>();
@@ -354,8 +369,8 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
 
         mEmailView.setAdapter(adapter);
     }
-
-
+*/
+/*
     private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
@@ -365,11 +380,12 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
     }
-
+*/
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
+/*
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;
@@ -466,6 +482,6 @@ public class Screen2_LogIn extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
-    }
+    }*/
 }
 

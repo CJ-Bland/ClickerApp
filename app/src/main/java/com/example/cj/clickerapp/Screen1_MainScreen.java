@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class Screen1_MainScreen extends AppCompatActivity {
 
-    private final int DELAY = 2500;
+    private final int DELAY = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

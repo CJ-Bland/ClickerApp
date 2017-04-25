@@ -16,6 +16,20 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name = "button_style">
+
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingRight">25dp</item>
+        <item name="android:paddingLeft">25dp</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:background">@drawable/gradient</item>
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

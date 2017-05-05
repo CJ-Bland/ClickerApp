@@ -7,9 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by CJ on 2/23/2017.
+ * Was used when using my proto database. Since using Facebook login, class is irrelevant. Will be
+ * deleted later
+ *
+ * @author CJ Bland
+ * @version 1.0
  */
-
 public class DBTools extends SQLiteOpenHelper {
 
     private final static int    DB_VERSION = 10;

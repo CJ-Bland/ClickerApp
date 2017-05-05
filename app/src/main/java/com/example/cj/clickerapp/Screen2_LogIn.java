@@ -58,7 +58,11 @@ import com.facebook.login.widget.LoginButton;
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via Facebook. Changed from my own proto database to facebook token
+ * login, hence all the commented out code
+ *
+ * @author CJ Bland
+ * @version 1.0
  */
 public class Screen2_LogIn extends AppCompatActivity /*implements LoaderCallbacks<Cursor>*/ {
 
@@ -100,12 +104,12 @@ public class Screen2_LogIn extends AppCompatActivity /*implements LoaderCallback
 
             @Override
             public void onCancel() {
-                // App code
+                Toast.makeText(getApplicationContext(), "Facebook Canceled", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException exception) {
-                // App code
+                Toast.makeText(getApplicationContext(), "Facebook Error", Toast.LENGTH_SHORT).show();
             }
         });
 /*

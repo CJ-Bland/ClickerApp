@@ -5,6 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+/**
+ * Since project was changed to use a navigation drawer (hamburger menu) class is not used
+ * May be reworked into program next semester
+ *
+ * @author CJ Bland
+ * @version 1.0
+ */
 public class Screen6_Results extends AppCompatActivity {
 
     @Override

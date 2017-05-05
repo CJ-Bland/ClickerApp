@@ -5,6 +5,12 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+/**
+ * The splash screen. Needs work, currently just a label and a progress bar
+ *
+ * @author CJ Bland
+ * @version 1.0
+ */
 public class Screen1_MainScreen extends AppCompatActivity {
 
     private final int DELAY = 2000;

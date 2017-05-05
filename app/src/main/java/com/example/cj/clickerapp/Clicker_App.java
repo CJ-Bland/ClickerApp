@@ -26,6 +26,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * The main screen, currently uses a view flipper to show different xml screens, but will eventually
+ * be the screen after the list view of classes so user can hit back without going to main login screen
+ */
 public class Clicker_App extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -59,6 +63,9 @@ public class Clicker_App extends AppCompatActivity
         vf = (ViewFlipper)findViewById(R.id.vf);
     }
 
+    /*My on click method, may be changed into multiple methods at some point, a seperate one to
+    handle view flipper and one to handle normal button presses
+    */
     public void onClick(View v){
         if(v.getId() == R.id.button8){
             vf.setDisplayedChild(1);
@@ -74,6 +81,7 @@ public class Clicker_App extends AppCompatActivity
             findViewById(R.id.fab).setVisibility(View.VISIBLE);
             //Toast.makeText(getApplicationContext(), "Switch to First", Toast.LENGTH_SHORT).show();
         }
+        //Quiz buttons
         else if(v.getId() == R.id.buttonA){
             bool = true;
             Toast.makeText(getApplicationContext(), "A", Toast.LENGTH_SHORT).show();
@@ -90,7 +98,7 @@ public class Clicker_App extends AppCompatActivity
             bool=false;
             Toast.makeText(getApplicationContext(), "D", Toast.LENGTH_SHORT).show();
         }
-
+        //Goes to next screen
         else if(v.getId() == R.id.button7){
             vf.setDisplayedChild(2);
             findViewById(R.id.fab).setVisibility(View.GONE);

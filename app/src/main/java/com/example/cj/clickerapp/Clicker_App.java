@@ -3,9 +3,11 @@ package com.example.cj.clickerapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.RSDriverException;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +22,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -132,7 +141,12 @@ public class Clicker_App extends AppCompatActivity
             TextView connTest = (TextView) findViewById(R.id.tvConnTest);
             connTest.setText("Trying");
 
+            checkJDBC();
+/*
             try {
+
+                //Class.forName("net.sourceforge.jtds.jdbc.Driver");
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection conn = DriverManager.getConnection(dbUrl);
                 connTest.append("1");
 
@@ -153,22 +167,48 @@ public class Clicker_App extends AppCompatActivity
                     newLine += rset.getString(5) + "\n";
 
                     connTest.append(newLine);
-                /*
-                System.out.print(rset.getString(1)+"\t\t");
-                System.out.print(rset.getString(2)+"\t\t");
-                System.out.print(rset.getString(3)+"\t\t\t");
-                System.out.print(rset.getString(4)+"\t");
-                System.out.print(rset.getString(5)+"\n");
-                */
-
-                }
+                               }
             }
-            catch(Exception SQLException){
-                connTest.append("\nConnection Error");
+            catch(SQLException ex){
+                //connTest.append("\nConnection Error");
+                connTest.append("\nSQLException: " + ex.getMessage());
+                connTest.append("\nSQLState: " + ex.getSQLState());
+                connTest.append("\nVendorError: " + ex.getErrorCode());
+            }
+            catch(ClassNotFoundException cNFE){
+                connTest.append("Class Not Found");
+            }
+            catch(Exception e){
+                connTest.append("Bad");
             }
             finally{
 
             }
+            */
+        }
+    }
+
+    public void checkJDBC(){
+        TextView connTest = (TextView) findViewById(R.id.tvConnTest);
+        connTest.append("\nLooking for Driver");
+        connTest.setMovementMethod(new ScrollingMovementMethod());
+        try {
+            Class.forName("org.postgresql.Driver");
+            //Class.forName("com.mysql.jdbc.Driver").newInstance(); //second driver, still doesn't work
+
+            connTest.append("\nFound Driver");
+        } catch (ClassNotFoundException e) {
+            connTest.append("\nWhere is your PostgreSQL JDBC Driver? "
+                    + "Include in your library path!");
+            Writer writer = new StringWriter();
+            e.printStackTrace(new PrintWriter(writer));
+            String s = writer.toString();
+            connTest.append("\n" + s);
+           // e.printStackTrace();
+
+        }
+        catch (Exception ex){
+            connTest.append("\nBad");
         }
     }
 
@@ -225,6 +265,8 @@ public class Clicker_App extends AppCompatActivity
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    LoginManager.getInstance().logOut();
+                    AccessToken.setCurrentAccessToken(null);
                     Intent i = new Intent(Clicker_App.this, Screen2_LogIn.class);
                     startActivity(i);
                     finish();
@@ -244,5 +286,13 @@ public class Clicker_App extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    protected void onStop(){
+        super.onStop();
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        LoginManager.getInstance().logOut();
+        AccessToken.setCurrentAccessToken(null);
     }
 }

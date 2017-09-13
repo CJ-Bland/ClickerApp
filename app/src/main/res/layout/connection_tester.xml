@@ -20,10 +20,12 @@
 
     <TextView
         android:id="@+id/tvConnTest"
+        android:maxLines = "25"
+        android:scrollbars = "vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bConnTest"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:text="Connection Test" />
 </RelativeLayout>

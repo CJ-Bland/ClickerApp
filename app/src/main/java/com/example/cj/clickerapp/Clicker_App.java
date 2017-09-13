@@ -24,7 +24,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * The main screen, currently uses a view flipper to show different xml screens, but will eventually
@@ -32,6 +34,8 @@ import java.sql.SQLException;
  */
 public class Clicker_App extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public String dbUrl = "jdbc:postgresql://ec2-54-243-197-180.compute-1.amazonaws.com:5432/d1poesa08bdj5b?sslmode=require&user=frbsrpyunfrpxp&password=539eac8b14c3b138584be23b272bf1eb4b89f00afc459695c969666773f27871";
 
     public boolean bool = false;
     public ViewFlipper vf;
@@ -63,10 +67,12 @@ public class Clicker_App extends AppCompatActivity
         vf = (ViewFlipper)findViewById(R.id.vf);
     }
 
-    /*My on click method, may be changed into multiple methods at some point, a seperate one to
+    /*My on click method, may be changed into multiple methods at some point, a separate one to
     handle view flipper and one to handle normal button presses
     */
     public void onClick(View v){
+
+        //Flipper Buttons
         if(v.getId() == R.id.button8){
             vf.setDisplayedChild(1);
             //findViewById(R.id.content).setVisibility(View.GONE);
@@ -81,6 +87,11 @@ public class Clicker_App extends AppCompatActivity
             findViewById(R.id.fab).setVisibility(View.VISIBLE);
             //Toast.makeText(getApplicationContext(), "Switch to First", Toast.LENGTH_SHORT).show();
         }
+        else if(v.getId() == R.id.button2) {
+            vf.setDisplayedChild(3);
+            findViewById(R.id.fab).setVisibility(View.GONE);
+        }
+
         //Quiz buttons
         else if(v.getId() == R.id.buttonA){
             bool = true;
@@ -109,6 +120,54 @@ public class Clicker_App extends AppCompatActivity
             }
             else if(!bool){
                 tv.setText("You got it wrong :(");
+            }
+        }
+
+        //Runs connection test
+
+        else if(v.getId() == R.id.bConnTest) {
+
+
+            Toast.makeText(getApplicationContext(), "Connection Test", Toast.LENGTH_SHORT).show();
+            TextView connTest = (TextView) findViewById(R.id.tvConnTest);
+            connTest.setText("Trying");
+
+            try {
+                Connection conn = DriverManager.getConnection(dbUrl);
+                connTest.append("1");
+
+
+                Statement stmt = null;
+                ResultSet rset = null;
+                stmt = conn.createStatement();
+                connTest.append("2");
+                rset = stmt.executeQuery("SELECT * FROM class_table;");
+                System.out.println("dept course_num sect_num online id");
+                while (rset.next()) {
+                    String newLine = "";
+
+                    newLine += rset.getString(1) + "\t\t";
+                    newLine += rset.getString(2) + "\t\t";
+                    newLine += rset.getString(3) + "\t\t\t";
+                    newLine += rset.getString(4) + "\t";
+                    newLine += rset.getString(5) + "\n";
+
+                    connTest.append(newLine);
+                /*
+                System.out.print(rset.getString(1)+"\t\t");
+                System.out.print(rset.getString(2)+"\t\t");
+                System.out.print(rset.getString(3)+"\t\t\t");
+                System.out.print(rset.getString(4)+"\t");
+                System.out.print(rset.getString(5)+"\n");
+                */
+
+                }
+            }
+            catch(Exception SQLException){
+                connTest.append("\nConnection Error");
+            }
+            finally{
+
             }
         }
     }

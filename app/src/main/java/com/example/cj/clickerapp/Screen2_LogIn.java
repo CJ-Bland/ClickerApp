@@ -142,6 +142,15 @@ public class Screen2_LogIn extends AppCompatActivity /*implements LoaderCallback
         */
     }
 
+    /**Cheat method for bypassing facebook login, will be deleted in future**/
+    public void onCheatClick(View v){
+        if (v.getId() == R.id.cheat) {
+            Intent myIntent = new Intent(Screen2_LogIn.this, Clicker_App.class);
+            startActivity(myIntent);
+        }
+    }
+
+
     //@Override
     /*
     public View onCreateView(

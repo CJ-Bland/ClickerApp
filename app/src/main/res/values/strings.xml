@@ -25,6 +25,10 @@
     <string name="login">Clicker App Log In</string>
     <string name="cToken">Idkdude</string>
 
+
+   <!-- <string name = "dbURL">jdbc:postgresql://ec2-54-243-197-180.compute-1.amazonaws.com:5432/d1poesa08bdj5b?sslmode=require&user=frbsrpyunfrpxp&password=539eac8b14c3b138584be23b272bf1eb4b89f00afc459695c969666773f27871</string>
+    -->
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

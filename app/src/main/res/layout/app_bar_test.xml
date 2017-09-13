@@ -41,6 +41,11 @@
             layout = "@layout/activity_screen5__answer_submitted"
             android:visibility="gone"/>
 
+        <include
+            android:id="@+id/connTest"
+            layout = "@layout/connection_tester"
+            android:visibility="gone"/>
+
     </ViewFlipper>
 <!--
     <include
